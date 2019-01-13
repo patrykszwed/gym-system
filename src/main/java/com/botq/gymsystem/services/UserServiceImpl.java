@@ -1,6 +1,7 @@
 package com.botq.gymsystem.services;
 
 import com.botq.gymsystem.domain.User;
+import com.botq.gymsystem.exceptions.UserException;
 import com.botq.gymsystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findUserById(Long id) {
         return userRepository.findByIdEquals(id);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.findByIdEquals(id);
+
+        if(user == null)    // there is no such id
+            throw new UserException("User with ID " + id + " could not be found");
+
+        userRepository.delete(user);
     }
 }
