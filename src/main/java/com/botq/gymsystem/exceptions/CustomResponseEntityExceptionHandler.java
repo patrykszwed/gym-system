@@ -13,8 +13,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleUserIdException(UserException ex, WebRequest request){
+    public final ResponseEntity<Object> handleUserException(UserException ex, WebRequest request){
         UserExceptionResponse exceptionResponse = new UserExceptionResponse(ex.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleExerciseException(ExerciseException ex, WebRequest request){
+        ExerciseExceptionResponse exceptionResponse = new ExerciseExceptionResponse(ex.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

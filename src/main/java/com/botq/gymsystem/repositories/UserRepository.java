@@ -4,5 +4,5 @@ import com.botq.gymsystem.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUsernameIs(String username);
+    User findByUsername(String username);
 }

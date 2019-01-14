@@ -32,3 +32,5 @@ public class Exercise {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userList = new ArrayList<>();
 }
+
+//todo Is something like Backlog needed? For example for tracking series and repetitions each day.

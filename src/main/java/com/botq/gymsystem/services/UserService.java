@@ -5,9 +5,8 @@ import com.botq.gymsystem.domain.User;
 import java.util.List;
 
 public interface UserService {
-
-    List<User> findAllUsers();
     User saveOrUpdateUser(User user);
+    List<User> findAllUsers();
     User findUserByUsername(String username);
     void deleteUser(String username);
 }

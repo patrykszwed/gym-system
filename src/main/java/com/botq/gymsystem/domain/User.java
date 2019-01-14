@@ -34,7 +34,7 @@ public class User {
     @Column(updatable = false)
     private Date registrationDate;
 
-    @ManyToMany(mappedBy = "userList")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userList")
     private List<Exercise> exerciseList = new ArrayList<>();
 
     //todo is date broken while adding new entry?

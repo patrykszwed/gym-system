@@ -20,6 +20,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User saveOrUpdateUser(User user) {
+
+        String username = user.getUsername().toLowerCase();
+
+        try{
+            user.setUsername(username);
+            return userRepository.save(user);
+        } catch(Exception e){
+            throw new UserException("Username '" + username + "' already exists");
+        }
+
+    }
+
+    @Override
     public List<User> findAllUsers() {
         List<User> userList = new ArrayList<>();
         userRepository.findAll().iterator().forEachRemaining(userList::add);
@@ -27,36 +41,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User saveOrUpdateUser(User user) {
-
-        String username = user.getUsername().toLowerCase();
-
-        try{
-            user.setUsername(username);
-
-            return userRepository.save(user);
-        } catch(Exception e){
-            throw new UserException("Username " + username + " already exists");
-        }
-
-    }
-
-    @Override
     public User findUserByUsername(String username) {
-        User user = userRepository.findByUsernameIs(username.toLowerCase());
+        User user = userRepository.findByUsername(username.toLowerCase());
 
         if(user == null)
-            throw new UserException("Username " + username.toLowerCase() + " does not exist");
-
+            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
         return user;
     }
 
     @Override
     public void deleteUser(String username) {
-        User user = userRepository.findByUsernameIs(username.toLowerCase());
+        User user = userRepository.findByUsername(username.toLowerCase());
 
         if(user == null)    // there is no such id
-            throw new UserException("Username " + username.toLowerCase() + " does not exist");
+            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
 
         userRepository.delete(user);
     }
