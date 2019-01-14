@@ -19,13 +19,16 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Exercise identifier is required")
+    @Column(updatable = false, unique = true)
+    private String exerciseId;
     @NotBlank(message = "Exercise name is required")
     private String exerciseName;
     private String description;
 
     @ManyToMany(cascade = {CascadeType.REFRESH})
     @JoinTable(name = "user_exercise",
-            joinColumns = @JoinColumn(name = "post_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+            joinColumns = @JoinColumn(name = "exercise_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userList = new ArrayList<>();
 }
