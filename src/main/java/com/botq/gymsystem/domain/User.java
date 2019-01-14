@@ -37,6 +37,7 @@ public class User {
     @ManyToMany(mappedBy = "userList")
     private List<Exercise> exerciseList = new ArrayList<>();
 
+    //todo is date broken while adding new entry?
     @PrePersist
     public void onCreate(){
         this.registrationDate = new Date();

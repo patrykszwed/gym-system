@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService{
         return userList;
     }
 
-    // todo change id to username
     @Override
     public User saveOrUpdateUser(User user) {
 
