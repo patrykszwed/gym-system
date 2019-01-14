@@ -26,10 +26,16 @@ public class UserServiceImpl implements UserService{
         return userList;
     }
 
-    // todo add checking if the user already exists
+    // todo change id to username
     @Override
     public User saveOrUpdateUser(User user) {
-        return userRepository.save(user);
+
+        try{
+            return userRepository.save(user);
+        } catch(Exception e){
+            throw new UserException("User with ID " + user.getId() + " already exists");
+        }
+
     }
 
     @Override

@@ -36,4 +36,9 @@ public class User {
 
     @ManyToMany(mappedBy = "userList")
     private List<Exercise> exerciseList = new ArrayList<>();
+
+    @PrePersist
+    public void onCreate(){
+        this.registrationDate = new Date();
+    }
 }
