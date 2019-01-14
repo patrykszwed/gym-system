@@ -40,17 +40,17 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id){
-        User user = userService.findUserById(id);
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserById(@PathVariable String username){
+        User user = userService.findUserByUsername(username);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
-        userService.deleteUser(id);
+    @DeleteMapping("/{username}")
+    public ResponseEntity<?> deleteUser(@PathVariable String username){
+        userService.deleteUser(username);
 
-        return new ResponseEntity<>("User with ID " + id + " was successfully deleted", HttpStatus.OK);
+        return new ResponseEntity<>("User with username " + username + " was successfully deleted", HttpStatus.OK);
     }
 }
