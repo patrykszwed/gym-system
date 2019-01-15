@@ -2,8 +2,8 @@
 Web application to track your progress on a gym. 
 
 ## Authors:
-@jBosak98
-@patrykszwed
+* @jBosak98
+* @patrykszwed
 
 ## Technologies:
 * Spring
