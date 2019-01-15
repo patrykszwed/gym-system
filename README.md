@@ -1,11 +1,11 @@
 # Gym System
 Web application to track your progress on a gym. 
 
-##Authors:
+## Authors:
 @jBosak98
 @patrykszwed
 
-##Technologies:
+## Technologies:
 *Spring
 *Hibernate
 *React
