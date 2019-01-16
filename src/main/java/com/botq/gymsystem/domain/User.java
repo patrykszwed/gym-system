@@ -79,7 +79,6 @@ public class User {
         this.exerciseList = exerciseList;
     }
 
-    //todo is date broken while adding new entry?
     @PrePersist
     public void onCreate(){
         this.setRegistrationDate(LocalDate.now());
