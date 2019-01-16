@@ -1,12 +1,10 @@
 package com.botq.gymsystem.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,10 +22,8 @@ public class User {
     private String firstName;
     private String lastName;
 
-    //todo change Date to LocalDate in each model?
-    @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
-    private Date registrationDate;
+    private LocalDate registrationDate;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userList")
     private List<Exercise> exerciseList = new ArrayList<>();
@@ -67,11 +63,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getRegistrationDate() {
+    public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -86,6 +82,6 @@ public class User {
     //todo is date broken while adding new entry?
     @PrePersist
     public void onCreate(){
-        this.registrationDate = new Date();
+        this.setRegistrationDate(LocalDate.now());
     }
 }
