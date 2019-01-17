@@ -62,6 +62,7 @@ public class UserController {
         return new ResponseEntity<>("Exercise with id '" + exerciseId.toLowerCase() + "' was successfully added to User with username '" + username.toLowerCase() + "'", HttpStatus.OK);
     }
 
+    //todo BROKEN @GetMapping for UserExercise
     @GetMapping("/exercise/{username}")
     public ResponseEntity<?> findExercisesByUsername(@PathVariable String username){
         Iterable<UserExercise> userExerciseIterable = userService.findExercisesByUsername(username);
