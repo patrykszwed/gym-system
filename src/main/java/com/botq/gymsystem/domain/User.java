@@ -10,6 +10,22 @@ import java.util.List;
 @Entity
 public class User {
 
+    public User() { }
+
+    public User(
+            @NotBlank(message = "Username is required")
+            @Size(min = 3, max = 15, message = "Please use from 3 up to 15 characters") String username,
+            String firstName,
+            String lastName,
+            Date registrationDate,
+            List<Exercise> exerciseList) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.registrationDate = registrationDate;
+        this.exerciseList = exerciseList;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,14 +38,50 @@ public class User {
     private String firstName;
     private String lastName;
 
+    @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
     private LocalDate registrationDate;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userList")
     private List<Exercise> exerciseList = new ArrayList<>();
 
-    public User(){
+    @PrePersist
+    public void onCreate(){
+        this.setRegistrationDate(LocalDate.now());
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", exerciseList=" + exerciseList +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(registrationDate, user.registrationDate) &&
+                Objects.equals(exerciseList, user.exerciseList);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, username, firstName, lastName, registrationDate, exerciseList);
+    }
+
+    //GETTERS AND SETTERS
 
     public Long getId() {
         return id;
@@ -77,10 +129,5 @@ public class User {
 
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
-    }
-
-    @PrePersist
-    public void onCreate(){
-        this.setRegistrationDate(LocalDate.now());
     }
 }
