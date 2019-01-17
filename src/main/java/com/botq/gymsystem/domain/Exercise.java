@@ -1,9 +1,5 @@
 package com.botq.gymsystem.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -46,7 +42,6 @@ public class Exercise {
 
     //todo Is something like Backlog needed? For example for tracking series and repetitions each day.
 
-
     @Override
     public String toString() {
         return "Exercise{" +
@@ -77,6 +72,10 @@ public class Exercise {
     }
 
     //GETTERS AND SETTERS
+
+    public Exercise(){
+
+    }
 
     public Long getId() {
         return id;

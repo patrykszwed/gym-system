@@ -1,11 +1,18 @@
 package com.botq.gymsystem.exceptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class UserExceptionResponse {
 
     private String exceptionMessage;
+
+    public UserExceptionResponse(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    public String getExceptionMessage() {
+        return exceptionMessage;
+    }
+
+    public void setExceptionMessage(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
+    }
 }
