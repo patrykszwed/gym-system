@@ -1,6 +1,6 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.domain.Exercise;
+import com.botq.gymsystem.models.Exercise;
 import com.botq.gymsystem.exceptions.ExerciseException;
 import com.botq.gymsystem.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;

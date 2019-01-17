@@ -1,6 +1,6 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.domain.User;
+import com.botq.gymsystem.models.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.domain.User;
+import com.botq.gymsystem.models.User;
 import com.botq.gymsystem.exceptions.UserException;
 import com.botq.gymsystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

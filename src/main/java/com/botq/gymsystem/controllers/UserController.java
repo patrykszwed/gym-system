@@ -1,6 +1,6 @@
 package com.botq.gymsystem.controllers;
 
-import com.botq.gymsystem.domain.User;
+import com.botq.gymsystem.models.User;
 import com.botq.gymsystem.services.MapValidationErrorService;
 import com.botq.gymsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

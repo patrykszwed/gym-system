@@ -1,6 +1,6 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.domain.Exercise;
+import com.botq.gymsystem.models.Exercise;
 
 import java.util.List;
 

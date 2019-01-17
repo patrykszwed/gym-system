@@ -1,4 +1,4 @@
-package com.botq.gymsystem.domain;
+package com.botq.gymsystem.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
