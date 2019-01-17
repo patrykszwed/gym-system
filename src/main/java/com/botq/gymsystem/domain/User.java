@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -17,7 +18,7 @@ public class User {
             @Size(min = 3, max = 15, message = "Please use from 3 up to 15 characters") String username,
             String firstName,
             String lastName,
-            Date registrationDate,
+            LocalDate registrationDate,
             List<Exercise> exerciseList) {
         this.username = username;
         this.firstName = firstName;
@@ -38,7 +39,6 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
     private LocalDate registrationDate;
 

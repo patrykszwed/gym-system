@@ -73,10 +73,6 @@ public class Exercise {
 
     //GETTERS AND SETTERS
 
-    public Exercise(){
-
-    }
-
     public Long getId() {
         return id;
     }
