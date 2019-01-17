@@ -1,6 +1,6 @@
 package com.botq.gymsystem.repositories;
 
-import com.botq.gymsystem.domain.Exercise;
+import com.botq.gymsystem.models.Exercise;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
