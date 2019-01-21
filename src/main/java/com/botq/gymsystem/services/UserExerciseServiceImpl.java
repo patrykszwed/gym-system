@@ -15,14 +15,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserExerciseImpl implements UserExerciseService {
+public class UserExerciseServiceImpl implements UserExerciseService {
 
     private final UserRepository userRepository;
     private final ExerciseRepository exerciseRepository;
     private final UserExerciseRepository userExerciseRepository;
 
     @Autowired
-    public UserExerciseImpl(UserRepository userRepository, ExerciseRepository exerciseRepository, UserExerciseRepository userExerciseRepository) {
+    public UserExerciseServiceImpl(UserRepository userRepository, ExerciseRepository exerciseRepository, UserExerciseRepository userExerciseRepository) {
         this.userRepository = userRepository;
         this.exerciseRepository = exerciseRepository;
         this.userExerciseRepository = userExerciseRepository;
