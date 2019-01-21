@@ -50,11 +50,6 @@ public class UserExerciseServiceImpl implements UserExerciseService {
         User user = userRepository.findByUsername(username.toLowerCase());
         Iterable<UserExercise> userExerciseIterable = userExerciseRepository.findAllByUser(user);
 
-        // DEBUG
-        for (UserExercise userExercise : userExerciseIterable) {
-            System.out.println(userExercise);
-        }
-
         Set<UserExercise> userExercises = new HashSet<>();
         userExerciseIterable.forEach(userExercises::add);
 
