@@ -1,5 +1,7 @@
 package com.botq.gymsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.*;
@@ -19,6 +21,7 @@ public class Exercise {
     private String description;
 
     @OneToMany(mappedBy = "exercise")
+    @JsonIgnore
     private Set<UserExercise> userExercises = new HashSet<>();
 
     // == constructors ==

@@ -1,5 +1,7 @@
 package com.botq.gymsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -27,6 +29,7 @@ public class User {
     private LocalDate registrationDate;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<UserExercise> userExercises = new HashSet<>();
 
     @PrePersist

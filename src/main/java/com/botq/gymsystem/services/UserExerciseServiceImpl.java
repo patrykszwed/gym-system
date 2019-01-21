@@ -2,6 +2,7 @@ package com.botq.gymsystem.services;
 
 import com.botq.gymsystem.exceptions.ExerciseException;
 import com.botq.gymsystem.exceptions.UserException;
+import com.botq.gymsystem.exceptions.UserExerciseException;
 import com.botq.gymsystem.models.Exercise;
 import com.botq.gymsystem.models.User;
 import com.botq.gymsystem.models.UserExercise;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -47,9 +49,34 @@ public class UserExerciseServiceImpl implements UserExerciseService {
     public Set<UserExercise> findExercisesByUsername(String username) {
         User user = userRepository.findByUsername(username.toLowerCase());
         Iterable<UserExercise> userExerciseIterable = userExerciseRepository.findAllByUser(user);
+
+        // DEBUG
+        for (UserExercise userExercise : userExerciseIterable) {
+            System.out.println(userExercise);
+        }
+
         Set<UserExercise> userExercises = new HashSet<>();
         userExerciseIterable.forEach(userExercises::add);
 
         return userExercises;
+    }
+
+    @Override
+    public Set<UserExercise> findAllUserExercises() {
+        Iterable<UserExercise> userExercises = userExerciseRepository.findAll();
+        Set<UserExercise> userExercisesSet = new HashSet<>();
+        userExercises.forEach(userExercisesSet::add);
+        return userExercisesSet;
+    }
+
+    @Override
+    public void deleteUserExercise(String userExerciseId) {
+        Optional<UserExercise> userExerciseOptional = userExerciseRepository.findById(Long.parseLong(userExerciseId));
+        if(userExerciseOptional.isPresent()){
+            UserExercise userExercise = userExerciseOptional.get();
+            userExerciseRepository.delete(userExercise);
+        } else{
+            throw new UserExerciseException("UserExercise with id '" + userExerciseId + "' does not exist");
+        }
     }
 }
