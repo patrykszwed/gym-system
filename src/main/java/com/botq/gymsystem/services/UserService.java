@@ -10,6 +10,4 @@ public interface UserService {
     List<User> findAllUsers();
     User findUserByUsername(String username);
     void deleteUser(String username);
-    UserExercise addExerciseToUser(String username, String exerciseId, Integer repetitions, Integer series);
-    Iterable<UserExercise> findExercisesByUsername(String username);
 }

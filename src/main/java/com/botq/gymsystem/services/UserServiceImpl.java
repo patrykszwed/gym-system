@@ -69,29 +69,4 @@ public class UserServiceImpl implements UserService{
 
         userRepository.delete(user);
     }
-
-    // todo add validation!
-    @Override
-    public UserExercise addExerciseToUser(String username, String exerciseId, Integer repetitions, Integer series) {
-        User user = userRepository.findByUsername(username.toLowerCase());
-        Exercise exercise = exerciseRepository.findByExerciseId(exerciseId.toLowerCase());
-
-        if(user == null)
-            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
-        if(exercise == null)
-            throw new ExerciseException("Exercise with Id '" + exerciseId.toLowerCase() + "' does not exist");
-
-        UserExercise userExercise = new UserExercise(user, exercise, repetitions, series);
-        return userExerciseRepository.save(userExercise);
-    }
-
-    @Override
-    public Set<UserExercise> findExercisesByUsername(String username) {
-        User user = userRepository.findByUsername(username.toLowerCase());
-        Iterable<UserExercise> userExerciseIterable = userExerciseRepository.findAllByUser(user);
-        Set<UserExercise> userExercises = new HashSet<>();
-        userExerciseIterable.forEach(userExercises::add);
-
-        return userExercises;
-    }
 }
