@@ -45,6 +45,7 @@ public class UserExerciseServiceImpl implements UserExerciseService {
         return userExerciseRepository.save(userExercise);
     }
 
+    //todo change in a similar way to findAllUserExercises()
     @Override
     public Set<UserExercise> findExercisesByUsername(String username) {
         User user = userRepository.findByUsername(username.toLowerCase());
@@ -57,11 +58,8 @@ public class UserExerciseServiceImpl implements UserExerciseService {
     }
 
     @Override
-    public Set<UserExercise> findAllUserExercises() {
-        Iterable<UserExercise> userExercises = userExerciseRepository.findAll();
-        Set<UserExercise> userExercisesSet = new HashSet<>();
-        userExercises.forEach(userExercisesSet::add);
-        return userExercisesSet;
+    public Iterable<UserExercise> findAllUserExercises() {
+        return userExerciseRepository.findAll();
     }
 
     @Override
