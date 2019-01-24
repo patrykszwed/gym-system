@@ -1,7 +1,9 @@
 package com.botq.gymsystem.controllers;
 
 import com.botq.gymsystem.models.User;
+import com.botq.gymsystem.models.UserExercise;
 import com.botq.gymsystem.services.MapValidationErrorService;
+import com.botq.gymsystem.services.UserExerciseService;
 import com.botq.gymsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,6 +53,6 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable String username){
         userService.deleteUser(username);
 
-        return new ResponseEntity<>("User with username " + username + " was successfully deleted", HttpStatus.OK);
+        return new ResponseEntity<>("User with username '" + username + "' was successfully deleted", HttpStatus.OK);
     }
 }

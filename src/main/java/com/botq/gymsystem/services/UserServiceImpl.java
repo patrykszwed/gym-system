@@ -1,13 +1,10 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.models.User;
 import com.botq.gymsystem.exceptions.UserException;
+import com.botq.gymsystem.models.User;
 import com.botq.gymsystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -21,7 +18,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User saveOrUpdateUser(User user) {
-
         String username = user.getUsername().toLowerCase();
 
         try{
@@ -30,14 +26,11 @@ public class UserServiceImpl implements UserService{
         } catch(Exception e){
             throw new UserException("Username '" + username + "' already exists");
         }
-
     }
 
     @Override
-    public List<User> findAllUsers() {
-        List<User> userList = new ArrayList<>();
-        userRepository.findAll().iterator().forEachRemaining(userList::add);
-        return userList;
+    public Iterable<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

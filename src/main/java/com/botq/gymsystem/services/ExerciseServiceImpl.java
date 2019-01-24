@@ -1,13 +1,10 @@
 package com.botq.gymsystem.services;
 
-import com.botq.gymsystem.models.Exercise;
 import com.botq.gymsystem.exceptions.ExerciseException;
+import com.botq.gymsystem.models.Exercise;
 import com.botq.gymsystem.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService{
@@ -32,10 +29,8 @@ public class ExerciseServiceImpl implements ExerciseService{
     }
 
     @Override
-    public List<Exercise> findAllExercises() {
-        List<Exercise> exercises = new ArrayList<>();
-        exerciseRepository.findAll().iterator().forEachRemaining(exercises::add);
-        return exercises;
+    public Iterable<Exercise> findAllExercises() {
+        return exerciseRepository.findAll();
     }
 
     @Override
