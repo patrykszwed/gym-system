@@ -45,9 +45,9 @@ public class UserExerciseServiceImpl implements UserExerciseService {
         return userExerciseRepository.save(userExercise);
     }
 
-    //todo change in a similar way to findAllUserExercises()
+    // TODO custom query
     @Override
-    public Set<UserExercise> findExercisesByUsername(String username) {
+    public Iterable<UserExercise> findExercisesByUsername(String username) {
         User user = userRepository.findByUsername(username.toLowerCase());
         Iterable<UserExercise> userExerciseIterable = userExerciseRepository.findAllByUser(user);
 

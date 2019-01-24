@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
+    Iterable<Exercise> findAll();
     Exercise findByExerciseId(String exerciseId);
 }
