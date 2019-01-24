@@ -25,6 +25,7 @@ public class UserExerciseController {
     }
 
     // todo add validation
+    //TODO: refactor
     @PostMapping("/{username}/{exerciseId}/{repetitions}/{series}")
     public ResponseEntity<?> addExerciseToUser(@PathVariable String username, @PathVariable String exerciseId, @PathVariable Integer repetitions, @PathVariable Integer series){
         userExerciseService.addExerciseToUser(username, exerciseId, repetitions, series);
