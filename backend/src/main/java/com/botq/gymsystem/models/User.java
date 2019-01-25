@@ -3,6 +3,7 @@ package com.botq.gymsystem.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -17,10 +18,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 15, message = "Please use from 3 up to 15 characters")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email is not valid!")
     @Column(updatable = false, unique = true)
-    private String username;
+    private String email;
 
     private String firstName;
     private String lastName;
@@ -41,8 +42,8 @@ public class User {
 
     public User() { }
 
-    public User(@NotBlank(message = "Username is required") @Size(min = 3, max = 15, message = "Please use from 3 up to 15 characters") String username, String firstName, String lastName) {
-        this.username = username;
+    public User(@NotBlank(message = "Username is required") @Size(min = 3, max = 15, message = "Please use from 3 up to 15 characters") String email, String firstName, String lastName) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -66,7 +67,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", registrationDate=" + registrationDate +
@@ -84,12 +85,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

@@ -42,17 +42,17 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<?> getUserById(@PathVariable String username){
-        User user = userService.findUserByUsername(username);
+    @GetMapping("/{email}")
+    public ResponseEntity<?> getUserById(@PathVariable String email){
+        User user = userService.findUserByEmail(email);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{username}")
-    public ResponseEntity<?> deleteUser(@PathVariable String username){
-        userService.deleteUser(username);
+    @DeleteMapping("/{email}")
+    public ResponseEntity<?> deleteUser(@PathVariable String email){
+        userService.deleteUser(email);
 
-        return new ResponseEntity<>("User with username '" + username + "' was successfully deleted", HttpStatus.OK);
+        return new ResponseEntity<>("User with email '" + email + "' was successfully deleted", HttpStatus.OK);
     }
 }

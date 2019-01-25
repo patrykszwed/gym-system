@@ -30,10 +30,10 @@ public class GymSystemApplicationTests {
     @Test
     public void testUserDate(){
         LocalDate expected = Calendar.getInstance().getTime().toInstant().atZone(ZoneOffset.UTC).toLocalDate();
-        User u = new User("johnysmith","John","Smith");
+        User u = new User("johnysmith@gmail.com","John","Smith");
         userService.saveOrUpdateUser(u);
-        User u2 = userService.findUserByUsername("johnysmith");
-        userService.deleteUser("johnysmith");
+        User u2 = userService.findUserByEmail("johnysmith@gmail.com");
+        userService.deleteUser("johnysmith@gmail.com");
         Assert.assertNotNull(u2);
         Assert.assertEquals(expected,u2.getRegistrationDate());
     }

@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User saveOrUpdateUser(User user) {
-        String username = user.getUsername().toLowerCase();
+        String email = user.getEmail().toLowerCase();
 
         try{
-            user.setUsername(username);
+            user.setEmail(email);
             return userRepository.save(user);
         } catch(Exception e){
-            throw new UserException("Username '" + username + "' already exists");
+            throw new UserException("Username with email '" + email + "' already exists");
         }
     }
 
@@ -34,20 +34,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findUserByUsername(String username) {
-        User user = userRepository.findByUsername(username.toLowerCase());
+    public User findUserByEmail(String email) {
+        User user = userRepository.findByEmail(email.toLowerCase());
 
         if(user == null)
-            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
+            throw new UserException("Username with email '" + email.toLowerCase() + "' does not exist");
         return user;
     }
 
     @Override
-    public void deleteUser(String username) {
-        User user = userRepository.findByUsername(username.toLowerCase());
+    public void deleteUser(String email) {
+        User user = userRepository.findByEmail(email.toLowerCase());
 
         if(user == null)    // there is no such id
-            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
+            throw new UserException("Username with email '" + email.toLowerCase() + "' does not exist");
 
         userRepository.delete(user);
     }

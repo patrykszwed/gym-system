@@ -35,8 +35,8 @@ public class UserExerciseController {
 
     // todo add validation
     @GetMapping("/{username}")
-    public ResponseEntity<?> findExercisesByUsername(@PathVariable String username){
-        Iterable<UserExercise> userExerciseIterable = userExerciseService.findExercisesByUsername(username);
+    public ResponseEntity<?> findExercisesByUsername(@PathVariable String email){
+        Iterable<UserExercise> userExerciseIterable = userExerciseService.findExercisesByEmail(email);
         Set<UserExercise> userExercises = new HashSet<>();
         userExerciseIterable.forEach(userExercises::add);
 

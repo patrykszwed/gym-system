@@ -32,12 +32,12 @@ public class UserExerciseServiceImpl implements UserExerciseService {
 
     // todo add validation!
     @Override
-    public UserExercise addExerciseToUser(String username, String exerciseId, Integer repetitions, Integer series) {
-        User user = userRepository.findByUsername(username.toLowerCase());
+    public UserExercise addExerciseToUser(String email, String exerciseId, Integer repetitions, Integer series) {
+        User user = userRepository.findByEmail(email.toLowerCase());
         Exercise exercise = exerciseRepository.findByExerciseId(exerciseId.toLowerCase());
 
         if(user == null)
-            throw new UserException("Username '" + username.toLowerCase() + "' does not exist");
+            throw new UserException("Username with email '" + email.toLowerCase() + "' does not exist");
         if(exercise == null)
             throw new ExerciseException("Exercise with Id '" + exerciseId.toLowerCase() + "' does not exist");
 
@@ -47,8 +47,8 @@ public class UserExerciseServiceImpl implements UserExerciseService {
 
     // TODO custom query
     @Override
-    public Iterable<UserExercise> findExercisesByUsername(String username) {
-        User user = userRepository.findByUsername(username.toLowerCase());
+    public Iterable<UserExercise> findExercisesByEmail(String email) {
+        User user = userRepository.findByEmail(email.toLowerCase());
         Iterable<UserExercise> userExerciseIterable = userExerciseRepository.findAllByUser(user);
 
         Set<UserExercise> userExercises = new HashSet<>();
